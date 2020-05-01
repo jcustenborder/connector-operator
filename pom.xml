@@ -77,7 +77,7 @@
         <dependency>
             <groupId>com.github.jcustenborder.kafka</groupId>
             <artifactId>kafka-connect-client</artifactId>
-            <version>[0.2.8,)]</version>
+            <version>[0.2.8,)</version>
         </dependency>
 
         <dependency>
@@ -152,6 +152,7 @@
 
 
     </dependencies>
+
     <build>
         <plugins>
             <plugin>
@@ -240,30 +241,76 @@
                 <groupId>com.google.cloud.tools</groupId>
                 <artifactId>jib-maven-plugin</artifactId>
                 <version>2.1.0</version>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>build</goal>
-                        </goals>
-                        <configuration>
-                            <from>
-                                <image>openjdk:8-jre</image>
-                            </from>
-                            <to>
-                                <image>jcustenborder/${project.artifactId}</image>
-                                <tags>
-                                    <tag>${project.version}</tag>
-                                    <tag>latest</tag>
-                                </tags>
-                            </to>
-                            <container>
-                                <mainClass>com.github.jcustenborder.kafka.connect.operator.Main</mainClass>
-                            </container>
-                        </configuration>
-                    </execution>
-                </executions>
+                <configuration>
+                    <from>
+                        <image>openjdk:8-jre</image>
+                    </from>
+                    <container>
+                        <mainClass>com.github.jcustenborder.kafka.connect.operator.Main</mainClass>
+                    </container>
+                </configuration>
             </plugin>
+
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>docker-release</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.google.cloud.tools</groupId>
+                        <artifactId>jib-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>docker-release</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>build</goal>
+                                </goals>
+                                <configuration>
+                                    <to>
+                                        <image>jcustenborder/${project.artifactId}</image>
+                                        <tags>
+                                            <tag>${project.version}</tag>
+                                            <tag>latest</tag>
+                                        </tags>
+                                    </to>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>docker-snapshot</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.google.cloud.tools</groupId>
+                        <artifactId>jib-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>docker-snapshot</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>build</goal>
+                                </goals>
+                                <configuration>
+                                    <to>
+                                        <image>registry.hub.docker.com/jcustenborder/${project.artifactId}</image>
+                                        <tags>
+                                            <tag>${project.version}</tag>
+                                        </tags>
+                                    </to>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
