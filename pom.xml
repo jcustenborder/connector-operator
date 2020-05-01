@@ -1,0 +1,270 @@
+<?xml version="1.0"?>
+<!--
+
+    Copyright © 2017 Jeremy Custenborder (jcustenborder@gmail.com)
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+-->
+<project
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+        xmlns="http://maven.apache.org/POM/4.0.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.github.jcustenborder</groupId>
+        <artifactId>maven-central-parent</artifactId>
+        <version>1.0.0.0</version>
+    </parent>
+    <groupId>com.github.jcustenborder.kafka.connect</groupId>
+    <artifactId>connector-operator</artifactId>
+    <version>0.1-SNAPSHOT</version>
+    <name>connector-operator</name>
+    <url>https://github.com/jcustenborder/connector-operator</url>
+    <inceptionYear>2017</inceptionYear>
+    <licenses>
+        <license>
+            <name>Apache License 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <name>Jeremy Custenborder</name>
+            <email>jeremy@confluent.io</email>
+            <url>https://github.com/jcustenborder</url>
+            <roles>
+                <role>maintainer</role>
+            </roles>
+        </developer>
+    </developers>
+    <scm>
+        <connection>scm:git:https://github.com/jcustenborder/connector-operator.git</connection>
+        <developerConnection>scm:git:git@github.com:jcustenborder/connector-operator.git
+        </developerConnection>
+        <url>https://github.com/jcustenborder/connector-operator</url>
+    </scm>
+    <issueManagement>
+        <system>github</system>
+        <url>https://github.com/jcustenborder/connector-operator/issues</url>
+    </issueManagement>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <logback.version>1.1.8</logback.version>
+        <slf4j.version>1.7.21</slf4j.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <kafka-connect-style.version>[1.0.0.0,1.0.0.1000)</kafka-connect-style.version>
+        <mockito.version>2.6.3</mockito.version>
+        <junit.version>5.6.0</junit.version>
+        <junit.surefire.plugin.version>1.2.0</junit.surefire.plugin.version>
+        <surefire.version>2.21.0</surefire.version>
+        <failsafe.version>2.21.0</failsafe.version>
+        <okhttp.version>4.5.0</okhttp.version>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>com.github.jcustenborder.kafka</groupId>
+            <artifactId>kafka-connect-client</artifactId>
+            <!--            <version>[0.2.7,)</version>-->
+            <version>0.2-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.jcustenborder</groupId>
+            <artifactId>docker-properties</artifactId>
+            <version>0.1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>kafka-clients</artifactId>
+            <version>2.4.0</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.github.luben</groupId>
+                    <artifactId>zstd-jni</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.lz4</groupId>
+                    <artifactId>lz4-java</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.xerial.snappy</groupId>
+                    <artifactId>snappy-java</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.21</version>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.github.jcustenborder</groupId>
+            <artifactId>docker-compose-junit-extension</artifactId>
+            <version>0.0.1.2</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>${mockito.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>28.1-jre</version>
+        </dependency>
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>mockwebserver</artifactId>
+            <version>${okhttp.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>2.17</version>
+                <executions>
+                    <execution>
+                        <id>validate</id>
+                        <phase>validate</phase>
+                        <configuration>
+                            <configLocation>checkstyle.xml</configLocation>
+                            <encoding>UTF-8</encoding>
+                            <consoleOutput>true</consoleOutput>
+                            <failsOnError>true</failsOnError>
+                            <includeResources>false</includeResources>
+                            <includeTestResources>false</includeTestResources>
+                            <sourceDirectory>${project.build.sourceDirectory}</sourceDirectory>
+                        </configuration>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.github.jcustenborder.kafka.connect</groupId>
+                        <artifactId>kafka-connect-style-checkstyle</artifactId>
+                        <version>${kafka-connect-style.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>com.mycila</groupId>
+                <artifactId>license-maven-plugin</artifactId>
+                <version>3.0</version>
+                <configuration>
+                    <header>APACHE-2.txt</header>
+                    <properties>
+                        <owner>Jeremy Custenborder</owner>
+                        <email>jcustenborder@gmail.com</email>
+                    </properties>
+                    <excludes>
+                        <exclude>**/README</exclude>
+                        <exclude>src/test/resources/**</exclude>
+                        <exclude>src/main/resources/**</exclude>
+                        <exclude>src/assembly/**</exclude>
+                    </excludes>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.github.jcustenborder.kafka.connect</groupId>
+                        <artifactId>kafka-connect-style-licensing</artifactId>
+                        <version>${kafka-connect-style.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${surefire.version}</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.junit.platform</groupId>
+                        <artifactId>junit-platform-surefire-provider</artifactId>
+                        <version>${junit.surefire.plugin.version}</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <excludes>
+                        <exclude>**/*IT.java</exclude>
+                        <exclude>**/*IntegrationTest.java</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.5.1</version>
+                <inherited>true</inherited>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>jib-maven-plugin</artifactId>
+                <version>2.1.0</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>build</goal>
+                        </goals>
+                        <configuration>
+                            <from>
+                                <image>openjdk:8-jre</image>
+                            </from>
+                            <to>
+                                <image>jcustenborder/${project.artifactId}</image>
+                                <tags>
+                                    <tag>${project.version}</tag>
+                                    <tag>latest</tag>
+                                </tags>
+                            </to>
+                            <container>
+                                <mainClass>com.github.jcustenborder.kafka.connect.operator.Main</mainClass>
+                            </container>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
