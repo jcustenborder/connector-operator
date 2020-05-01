@@ -77,8 +77,7 @@
         <dependency>
             <groupId>com.github.jcustenborder.kafka</groupId>
             <artifactId>kafka-connect-client</artifactId>
-            <!--            <version>[0.2.7,)</version>-->
-            <version>0.2-SNAPSHOT</version>
+            <version>[0.2.8,)]</version>
         </dependency>
 
         <dependency>
