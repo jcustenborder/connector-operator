@@ -245,6 +245,9 @@
                     <from>
                         <image>openjdk:8-jre</image>
                     </from>
+                    <to>
+                        <image>registry.hub.docker.com/jcustenborder/${project.artifactId}</image>
+                    </to>
                     <container>
                         <mainClass>com.github.jcustenborder.kafka.connect.operator.Main</mainClass>
                     </container>
@@ -271,7 +274,6 @@
                                 </goals>
                                 <configuration>
                                     <to>
-                                        <image>jcustenborder/${project.artifactId}</image>
                                         <tags>
                                             <tag>${project.version}</tag>
                                             <tag>latest</tag>
@@ -300,7 +302,6 @@
                                 </goals>
                                 <configuration>
                                     <to>
-                                        <image>registry.hub.docker.com/jcustenborder/${project.artifactId}</image>
                                         <tags>
                                             <tag>${project.version}</tag>
                                         </tags>
