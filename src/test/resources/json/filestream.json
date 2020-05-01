@@ -1,0 +1,6 @@
+{
+  "connector.class": "org.apache.kafka.connect.file.FileStreamSinkConnector",
+  "tasks.max": "1",
+  "topics": "test-topic",
+  "name": "filestream"
+}
